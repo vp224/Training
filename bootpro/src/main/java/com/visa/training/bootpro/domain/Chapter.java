@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "chapter")
 public class Chapter {
@@ -30,6 +31,7 @@ public class Chapter {
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="book_id")
+	
 	Book book;
 	public Chapter() {
 		
@@ -62,7 +64,10 @@ public class Chapter {
 	public String getName() {
 		return name;
 	}
-
+	public void setBook(Book b) {
+		this.book= b;
+		
+	}
 	public void setName(String name) {
 		this.name = name;
 	}

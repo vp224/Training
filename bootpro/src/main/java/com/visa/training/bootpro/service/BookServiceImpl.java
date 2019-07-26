@@ -19,14 +19,12 @@ public class BookServiceImpl implements BookService{
 	public int addNewBook(Book p) {
 		// TODO Auto-generated method stub
 		
-		int id =0 ;
-		if(p.getReleaseyear() >= 2009) {
+			int id =0 ;
+		
 			Book created = dao.save(p);
 			id = created.getId();
-		}
-		else {
-			throw new IllegalArgumentException("min year of book is 2009");
-		}
+			
+		
 		return id;
 		
 	}
@@ -42,14 +40,14 @@ public class BookServiceImpl implements BookService{
 		// TODO Auto-generated method stub
 		return dao.findAll();
 	}
-
+	
 	@Override
 	public void delete(int id) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+	/*@Override
 	public void update(Book p) {
 		// TODO Auto-generated method stub
 		Book temp = dao.findById(p.getId());
@@ -57,9 +55,20 @@ public class BookServiceImpl implements BookService{
 		temp.setAuthor(p.getAuthor());
 		temp.setCategory(p.getCategory());
 		temp.setReleaseyear(p.getReleaseyear());
+		
+		dao.save(temp);
+	}*/
+	
+	@Override
+	public void update(Book p, int id) {
+		Book temp = dao.findById(id);
+		temp.setName(p.getName());
+		temp.setAuthor(p.getAuthor());
+		temp.setCategory(p.getCategory());
+		temp.setReleaseyear(p.getReleaseyear());
+		
 		dao.save(temp);
 	}
-	
 	
 
 }

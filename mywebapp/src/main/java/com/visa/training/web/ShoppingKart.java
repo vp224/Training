@@ -29,19 +29,21 @@ public class ShoppingKart extends HttpServlet {
 			session.setAttribute("selectedbooks", selectedbooks);
 			request.getRequestDispatcher("cars.html").forward(request,response);
 		
-		}
+		}else
 		if(uri.endsWith("addcars")) {
 			String selectedcars[]=request.getParameterValues("cars");
 			session.setAttribute("selectedcars", selectedcars);
 			request.getRequestDispatcher("bikes.html").forward(request,response);
 		
-		}
+		}else
 		if(uri.endsWith("addbikes")) {
 			String selectedbikes[]=request.getParameterValues("bikes");
 			String selectedbooks[]=(String[])session.getAttribute("selectedbooks");
 			String selectedcars[]=(String[])session.getAttribute("selectedcars");
 			
-			PrintWriter out = response.getWriter();
+			
+			request.getRequestDispatcher("cart_el.jsp").forward(request, response);
+			/*PrintWriter out = response.getWriter();
 			out.println("<html><body>");
 			out.println("<h4>selected books</h4>");
 			out.println("<ul>");
@@ -58,9 +60,9 @@ public class ShoppingKart extends HttpServlet {
 			out.println("<h4>selected bikes</h4>");
 			out.println("<ul>");
 			Stream.of(selectedbikes).map(s->"<li>"+s+"</li>").forEach(out::println);
-			out.println("<ul>");
+			out.println("<ul>");*/
 			
-			session.invalidate();
+			//session.invalidate();
 			//request.getRequestDispatcher("cars.html").forward(request,response);
 		
 		}

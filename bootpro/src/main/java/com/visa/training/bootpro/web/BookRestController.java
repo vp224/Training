@@ -17,6 +17,7 @@ import com.visa.training.bootpro.domain.Book;
 import com.visa.training.bootpro.service.BookService;
 
 
+
 @RestController
 public class BookRestController {
 	@Autowired
@@ -39,6 +40,7 @@ public class BookRestController {
 	@RequestMapping(value ="/api/books",method=RequestMethod.POST)
 	public ResponseEntity createProduct(@RequestBody Book toBeCreated) {
 		try {
+			toBeCreated.getChapters().forEach(e -> e.setBook(toBeCreated));
 			int id = service.addNewBook(toBeCreated);
 			HttpHeaders headers = new HttpHeaders();
 			headers.setLocation(URI.create("/api/books/"+id));
@@ -49,6 +51,21 @@ public class BookRestController {
 		}
 		
 		
+	}
+	
+	@RequestMapping(value = "/api/books/{id}",method  = RequestMethod.PUT)
+	public ResponseEntity updateProduct(@RequestBody Book tobeDeleted , @PathVariable("id") int id) {
+		Book s = service.findById(id);
+		
+		if(s!=null) {
+			tobeDeleted.getChapters().forEach(e -> e.setBook(tobeDeleted));
+			
+			service.update(tobeDeleted,id);
+			return new ResponseEntity<>(HttpStatus.CREATED);
+			
+		}
+		else
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
 	
 }

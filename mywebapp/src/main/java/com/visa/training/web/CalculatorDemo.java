@@ -23,31 +23,34 @@ public class CalculatorDemo extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-//		String s1 = request.getParameter("n1");
-//		String s2 = request.getParameter("n2");
-//		String s3 = request.getParameter("op");
-//		
-//		double s11 = Double.parseDouble(s1);
-//		double s22 = Double.parseDouble(s2);
-//		//double s33 = Double.parseDouble(s3);
+		//String s1 = request.getParameter("n1");
+		//String s2 = request.getParameter("n2");
+		//String s3 = request.getParameter("op");
+		
+		//double s11 = Double.parseDouble(s1);
+		//double s22 = Double.parseDouble(s2);
+		//double s33 = Double.parseDouble(s3);
 //		double res =0;
-//		if (s3 == "+")
+//		if (s3.equals( "+"))
 //		{
 //			res = s11+s22;
 //		}
-//		else if (s3 == "-") res =s11-s22;
-//		else if(s3 == "*") res = s11 *s22;
-//		else if (s3 == "/") res = s11/s22;
-//		
-//		PrintWriter out = response.getWriter();
-//		out.println(s11+" "+s3+" "+s22+" ="+res);
+//		if (s3.equals( "-")) res =s11-s22;
+//		if(s3.equals( "*")) res = s11 *s22;
+//		if (s3.equals( "/")) res = s11/s22;
+		
+		//PrintWriter out = response.getWriter();
+		//out.println(s11+" "+s3+" "+s22+" ="+res);
 		
 		
+		//request.setAttribute("result", res);
+		//request.getRequestDispatcher("calcresult_el.jsp").forward(request, response);
 		
-		String s1 = request.getParameter("p_name");//first
+		
+		String s1 = request.getParameter("p_name");
 		String s2 = request.getParameter("p_price");
 		String s3 = request.getParameter("p_qoh");
-		
+//		
 		double price = Double.parseDouble(s2);
 		int qoh = Integer.parseInt(s3);
 		Product p = new Product(s1,(float)price,qoh);
